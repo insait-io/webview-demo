@@ -25,7 +25,7 @@ EXPO_PUBLIC_AGENT_URL=<<YOUR AGENT URL>>
 EXPO_PUBLIC_HOST_URL=<<YOUR HOST URL>>
 ```
 
-## Getting Started!
+## Getting Started
 
 1. Install dependencies
 
