@@ -20,10 +20,10 @@ Create a `.env` file in the root directory to define the following:
 
 Example:
 
-```bash
-EXPO_PUBLIC_AGENT_URL=<<YOUR AGENT URL>>
-EXPO_PUBLIC_HOST_URL=<<YOUR HOST URL>>
-```
+   ```bash
+   EXPO_PUBLIC_AGENT_URL=<<YOUR AGENT URL>>
+   EXPO_PUBLIC_HOST_URL=<<YOUR HOST URL>>
+   ```
 
 ## Getting Started
 
