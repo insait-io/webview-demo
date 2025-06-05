@@ -24,24 +24,15 @@ export default function ChatbotScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ParallaxScrollView
-        headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-        headerImage={
-          <Image
-            source={require('@/assets/images/bot.png')}
-            style={styles.reactLogo}
-          />
-        }
-      >
-        <WebView
-          ref={webViewRef}
-          source={{
-            uri: `${AGENT_URL}?originUrl=${HOST_URL}&isMobile=true&userId=&isCustomIframeEnabled=true`,
-          }}
-          style={styles.webview}
-          javaScriptEnabled={true}
-          // Optional function to forward console logs to expo console for debugging
-          injectedJavaScript={`
+      <WebView
+        ref={webViewRef}
+        source={{
+          uri: `${AGENT_URL}?originUrl=${HOST_URL}&isMobile=true&userId=&isCustomIframeEnabled=true`,
+        }}
+        style={styles.webview}
+        javaScriptEnabled={true}
+        // Optional function to forward console logs to expo console for debugging
+        injectedJavaScript={`
                     (function() {
             const originalConsoleInfo = console.info;
             console.info = function(...args) {
@@ -64,25 +55,24 @@ export default function ChatbotScreen() {
           })();
           true;
           `}
-          onLoad={() => {
-            clearWebViewLocalStorage();
-          }}
-          onMessage={(event) => {
-            try {
-              const message = JSON.parse(event.nativeEvent.data);
-              if (message.type === 'InsaitRequestToServer') {
-                // Here postMessage events from the WebView can be handled
-                return;
-              } else {
-                console.log('Message from WebView:', ...message.data);
-              }
-            } catch (e) {
-              // Handle non-JSON messages
-              console.log('Raw message from WebView:', event.nativeEvent.data);
+        onLoad={() => {
+          clearWebViewLocalStorage();
+        }}
+        onMessage={(event) => {
+          try {
+            const message = JSON.parse(event.nativeEvent.data);
+            if (message.type === 'InsaitRequestToServer') {
+              // Here postMessage events from the WebView can be handled
+              return;
+            } else {
+              console.log('Message from WebView:', ...message.data);
             }
-          }}
-        />
-      </ParallaxScrollView>
+          } catch (e) {
+            // Handle non-JSON messages
+            console.log('Raw message from WebView:', event.nativeEvent.data);
+          }
+        }}
+      />
     </SafeAreaView>
   );
 }
